@@ -1,27 +1,42 @@
 class LoginData(object):
     login_success_data = [
         (
-            "linuxxiaochao",
-            "xiaochao11520",
-            "linuxxiaochao@126.com"
+            "汤直营",
+            "0",
+            "0000"
         )
     ]
 
     login_fail_data = [
         (
-            "linuxxiaochao",
             "",
-            "请输入密码"
+            "",
+            "",
+            "用户名不得为空"
         ),
         (
+            "asd",
             "",
-            "xiaochao11520",
-            "请输入帐号"
+            "caa",
+            "密码不得为空"
         ),
         (
             "linux",
             "xiaochao",
-            "帐号或密码错误"
+            "",
+            "验证码不得为空"
+        ),
+        (
+            "linux",
+            "xiaochao",
+            "122",
+            "验证码输入有误"
+        ),
+        (
+            "linux",
+            "xiaochao",
+            "0000",
+            "用户或密码有误"
         )
     ]
 

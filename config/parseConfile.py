@@ -13,7 +13,7 @@ class ParseConFile(object):
         self.file = CONF_PATH
         self.conf = configparser.ConfigParser()
         # 读取配置文件
-        self.conf.read(self.file, encoding='uft-8')
+        self.conf.read(self.file, encoding='utf-8')
 
     def get_all_sections(self):
         """获取指定section下所有的option, 返回列表"""

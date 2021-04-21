@@ -18,6 +18,8 @@ from selenium.common.exceptions import (
     NoAlertPresentException,
 )
 
+from JueShengV3.Js_element import CssElement
+
 
 class BasePage(object):
     driver = webdriver.Chrome
@@ -57,8 +59,6 @@ class BasePage(object):
         """
         判断超时
         find group elements
-        :param by: eg: id, name, xpath, css.....
-        :param locator: eg: id, name, xpath for str
         :return: elements object
         """
         try:
@@ -73,8 +73,6 @@ class BasePage(object):
         """
         判断元素是否存在
         assert element if exist
-        :param by: eg: id, name, xpath, css.....
-        :param locator: eg: id, name, xpath for str
         :return: if element return True else return false
         """
         if by.lower() in self.byDic:
@@ -91,9 +89,6 @@ class BasePage(object):
     def is_click(self, by, locator):
         """
         判断元素是否可点击
-        :param by:
-        :param locator:
-        :return:
         """
         if by.lower() in self.byDic:
             try:
@@ -110,7 +105,6 @@ class BasePage(object):
         """
         判断是否存在弹出提示
         assert alert if exsit
-        :return: alert obj
         """
         try:
             re = WD(self.driver, self.outTime).until(ec.alert_is_present())
@@ -189,6 +183,12 @@ class BasePage(object):
             element.click()
         else:
             print('the "{}" unclickable!')
+
+    @staticmethod
+    def js_element(self):
+
+        element = CssElement("#to-recover", describe="登录")
+        element.click()
 
     def open(self):
         self.driver.get(self.url)

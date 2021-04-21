@@ -7,9 +7,9 @@
 -----------------------------
 注：封装登录页面的元素
 """
-
+from JueShengV3.Js_element import CssElement
 from JueShengV3.config.parseConfile import ParseConFile
-from JueShengV3.page.BaePage import BasePage
+from JueShengV3.page.BasePage import BasePage
 
 
 class LoginPage(BasePage):
@@ -19,41 +19,30 @@ class LoginPage(BasePage):
     username = read_conf.get_locator_or_options('LoginPageElements', 'username')
     # 获取输入密码框的定位方法与名称
     password = read_conf.get_locator_or_options('LoginPageElements', 'password')
+    # 获取输入验证码框的定位方法与名称
+    code = read_conf.get_locator_or_options('LoginPageElements', 'code')
     # 获取登录按钮的定位方法与名称
     loginBtn = read_conf.get_locator_or_options('LoginPageElements', 'loginBtn')
     # 获取登录失败弹出信息的定位方法与名称
-    error_login = read_conf.get_locator_or_options('', '')
+    error_login = read_conf.get_locator_or_options('LoginPageElements', 'error_login')
     # 获取登录成功的验证信息的定位方法与名称
-    success_login = read_conf.get_locator_or_options('HomePageElements', 'loginmessge')
+    success_login = read_conf.get_locator_or_options('HomePageElements', 'success_login_msg')
+    url = read_conf.get_locator_or_options('V3LoginAccount', 'url')
 
-    def login(self, username, password):
+    def login(self, username, password, code):
         """登录流程"""
-        self.open_url()
-        self.input_username(username)
-        self.input_password(password)
-        self.click_login_btn()
-
-    def open_url(self):
-        return self.load_url('url')
-
-    def clear_username(self):
-        return self.clear(*LoginPage.username)
-
-    def input_username(self, username):
-        self.clear_username()
-        return self.send_keys(*LoginPage.username, username)
-
-    def clear_password(self):
-        return self.clear(*LoginPage.password)
-
-    def input_password(self, password):
-        self.clear_password()
-        return self.send_keys(*LoginPage.password, password)
-
-    def click_login_btn(self):
-        return self.click(*LoginPage.loginBtn)
+        self.load_url(*LoginPage.url)
+        self.clear(*LoginPage.username)
+        self.send_keys(*LoginPage.username, username)
+        self.clear(*LoginPage.password)
+        self.send_keys(*LoginPage.password, password)
+        self.clear(*LoginPage.code)
+        self.send_keys(*LoginPage.code, code)
+        self.click(*LoginPage.loginBtn)
 
     def get_error_login(self):
+        element = CssElement("#to-recover", describe="登录")
+        element.click()
         return self.get_element_text(*LoginPage.error_login)
 
     def get_login_success_account(self):

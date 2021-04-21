@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from JueShengV3.config.parseConfile import ParseConFile
-from JueShengV3.page.BaePage import BasePage
+from JueShengV3.page.BasePage import BasePage
 
 
 class MainPage(BasePage):

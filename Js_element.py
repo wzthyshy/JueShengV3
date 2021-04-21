@@ -1,3 +1,10 @@
+"""
+
+*****  封装js操作事件
+
+"""
+
+
 class CssElement(object):
 
     driver = None
